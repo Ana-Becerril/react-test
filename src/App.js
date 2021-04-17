@@ -1,20 +1,15 @@
-import React from 'react'
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./NavBar";
 
-// Componente de clase
-class CommentBox extends React.Component {
-  render() {
-    return <div className="commentBox">Hello World, I'm a comment box</div>;
+const App = () => {
+ const onButtonClicked = ()=> {
+
+    console.log("Button has been clicked!");
   }
-}
 
-// Componente funcional
-const CommentBox = () => (
-  <> 
-  <div className="commentBox">
-  Hello World, I'm a comment box
-  </div>
-  </>
-)
+  return(
+    <NavBar title="Hello,Im an example" searchBox="Search" onButtonClicked={onButtonClicked}/>
+  )
+};
 
-export default CommentBox;
+export default App;
