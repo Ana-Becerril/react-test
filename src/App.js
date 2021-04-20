@@ -1,15 +1,56 @@
 import React, { Component } from "react";
-import NavBar from "./NavBar";
+import Overview from "./components/Overview";
 
-const App = () => {
- const onButtonClicked = ()=> {
 
-    console.log("Button has been clicked!");
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      task: { text: '' },
+      tasks: [],
+    };
   }
 
-  return(
-    <NavBar title="Hello,Im an example" searchBox="Search" onButtonClicked={onButtonClicked}/>
-  )
-};
+  handleChange = (e) => {
+    this.setState({
+      task: {
+        text: e.target.value,
+      }
+    });
+  };
+
+  onSubmitTask = (e) => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.concat(this.state.task),
+      task: { text: '' },
+    });
+  };
+
+  render() {
+    const { task, tasks } = this.state;
+
+
+    return (
+      <div>
+
+        <form onSubmit={this.onSubmitTask}>
+          <label htmlFor="taskInput">Enter task</label>
+          <input
+            onChange={this.handleChange}
+            value={this.state.task.text}
+            type="text"
+            id="taskInput"
+          />
+          <button type="submit">
+            Add Task
+          </button>
+        </form>
+        <Overview tasks={tasks} />
+      </div>
+    );
+  }
+}
 
 export default App;
