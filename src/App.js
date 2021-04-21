@@ -10,7 +10,9 @@ class App extends Component {
       task: { text: '' },
       tasks: [],
     };
+    this.deleteItem = this.deleteItem.bind(this);
   }
+
 
   handleChange = (e) => {
     this.setState({
@@ -27,6 +29,12 @@ class App extends Component {
       task: { text: '' },
     });
   };
+
+    deleteItem(index){
+  this.setState((prevState) => ({
+    tasks: prevState.tasks.filter((_, i) => i !== index)
+  }));
+}
 
   render() {
     const { task, tasks } = this.state;
@@ -47,7 +55,7 @@ class App extends Component {
             Add Task
           </button>
         </form>
-        <Overview tasks={tasks} />
+        <Overview tasks={tasks} deleteItem={this.deleteItem} />
       </div>
     );
   }
