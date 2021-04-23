@@ -65,8 +65,6 @@
 
 import React, { useState } from "react";
 import Overview from "./components/Overview";
-import uniqid from "uniqid";
-
 
 
 function App() {
@@ -75,7 +73,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const handleChange = e => {
-    setTask({ text: e.target.value, id: uniqid() });
+    setTask({ text: e.target.value});
   };
 
   const onSubmitTask = (e) => {
@@ -87,16 +85,13 @@ function App() {
   };
 
   const deleteItem = (index) => {
-    console.log(tasks[0])
-    console.log(index)
+    console.log(tasks[index])
     const tasksClone=[...tasks];
-    tasksClone.filter( task => task.id !== index)
+    tasksClone.splice(index, 1);
     setTasks(tasksClone)
   }
 
-  //var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
-
-
+  
   return (
     <div>
       <form onSubmit={onSubmitTask}>

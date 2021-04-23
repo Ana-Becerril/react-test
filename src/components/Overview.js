@@ -9,7 +9,7 @@ const Overview = ({tasks, deleteItem}) => {
         return <div> 
         <div> {i+1 } {task.text}
         <div></div> 
-        <button onClick={() => deleteItem(task.id)}> Delete </button> </div>
+        <button onClick={() => deleteItem(i)}> Delete </button> </div>
         </div>
       })}
     </ul>
